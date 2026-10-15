@@ -1,0 +1,31 @@
+# Password data never enters git. See OPEN_SOURCE.md §4.
+data/raw/
+data/splits/*.tsv
+data/private/
+*rockyou*
+*-withcount*
+
+# Survey raw responses (the cleaned variant tables are committed; raw exports are not)
+data/survey_raw/
+results/private/
+
+# Generated word lists: Wikipedia-derived, rebuildable with tools/fetch_wordlists.py.
+# pack.toml (committed) records which categories produced each file. See data/LICENSE-DATA.md.
+locales/*/words/*.txt
+
+# Python
+__pycache__/
+*.py[cod]
+.venv/
+venv/
+.pytest_cache/
+*.egg-info/
+
+# Editors and OS
+.vscode/
+.idea/
+.DS_Store
+Thumbs.db
+
+# Keep these, despite the rules above
+!data/splits/MANIFEST.json
