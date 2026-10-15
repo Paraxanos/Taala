@@ -1,0 +1,26 @@
+{
+  "created": "2026-10-10",
+  "seed": 20261007,
+  "input": {
+    "name": "rockyou.txt",
+    "sha256": "16035fea7742cb0561c513de1d946eda5716d7de294e6c732449740096686173",
+    "has_counts": false
+  },
+  "filters": {
+    "max_password_length": 64
+  },
+  "counts": {
+    "unique": 14343508,
+    "skipped": 884,
+    "occurrences": 14343508,
+    "train": 7171027,
+    "test": 7172481,
+    "train_unique": 7171027,
+    "test_unique": 7172481
+  },
+  "outputs": {
+    "train_counts.tsv": "296f7213b465e231d246421789b99ca9b9fdcb9aa55cbb09dbee9b68b0408281",
+    "test_counts.tsv": "ce8f7fd64c87673ec19b27b9a6e512b102d6e96b7ad4325e0e00d633f95cd37d"
+  },
+  "note": "Outputs are gitignored. Rerunning with the same seed and input reproduces them."
+}

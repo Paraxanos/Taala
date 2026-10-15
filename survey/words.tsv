@@ -1,0 +1,101 @@
+id	devanagari	ref_latin	wiki_title	category	phenomena
+w001	प्रिया	priya	Priya	given_name	glide,final_a
+w002	राहुल	rahul	Rahul	given_name	aspirate
+w003	अनुज	anuj	Anuj	given_name	plain
+w004	पूजा	pooja	Pooja	given_name	oo_u,final_a
+w005	नेहा	neha	Neha	given_name	aspirate,final_a
+w006	विशाल	vishal	Vishal	given_name	v_w,sh_s,long_aa
+w007	सुनील	sunil	Sunil	given_name	ee_i
+w008	दीपक	deepak	Deepak	given_name	ee_i
+w009	अजय	ajay	Ajay	given_name	glide
+w010	काजल	kajal	Kajal	given_name	long_aa
+w011	मनीषा	manisha	Manisha	given_name	ee_i,sh_s,final_a
+w012	ऋतु	ritu	Ritu	given_name	vocalic_r
+w013	श्वेता	shweta	Shweta	given_name	sh_s,v_w,cluster,final_a
+w014	ज्योति	jyoti	Jyoti	given_name	cluster,glide
+w015	अमित	amit	Amit	given_name	plain
+w016	संजय	sanjay	Sanjay	given_name	nasal,glide
+w017	भावना	bhavna	Bhavna	given_name	aspirate,v_w,final_a
+w018	गौरव	gaurav	Gaurav	given_name	diphthong,v_w
+w019	हर्षा	harsha	Harsha	given_name	sh_s,final_a
+w020	लक्ष्मी	lakshmi	Lakshmi	given_name	cluster,ee_i
+w021	वैशाली	vaishali	Vaishali	given_name	diphthong,sh_s,ee_i
+w022	फूलन	phoolan	Phoolan Devi	given_name	ph_f,oo_u
+w023	ज़ेबा	zeba		given_name	z_j,final_a
+w024	शुभम	shubham	Shubham	given_name	sh_s,aspirate
+w025	कृष्णा	krishna		given_name	vocalic_r,retroflex,cluster,final_a
+w026	शर्मा	sharma	Sharma	surname	sh_s,final_a
+w027	वर्मा	verma	Verma	surname	v_w,final_a
+w028	गुप्ता	gupta	Gupta	surname	final_a
+w029	चौधरी	chaudhary	Chaudhary	surname	diphthong,aspirate,ee_i
+w030	सिंह	singh	Singh	surname	nasal,aspirate
+w031	यादव	yadav	Yadav	surname	glide,v_w,long_aa
+w032	मिश्रा	mishra	Mishra	surname	sh_s,cluster,final_a
+w033	अग्रवाल	agarwal	Agrawal	surname	cluster,v_w,long_aa
+w034	भट्ट	bhatt	Bhatt	surname	aspirate,retroflex,doubled
+w035	जोशी	joshi	Joshi	surname	sh_s,ee_i
+w036	नायर	nayar	Nair	surname	glide
+w037	रेड्डी	reddy	Reddy	surname	retroflex,doubled,ee_i
+w038	हनुमान	hanuman	Hanuman	deity_festival	long_aa
+w039	गणेश	ganesh	Ganesha	deity_festival	retroflex,sh_s
+w040	दुर्गा	durga	Durga	deity_festival	final_a
+w041	शिव	shiv	Shiva	deity_festival	sh_s,v_w
+w042	कृष्ण	krishn	Krishna	deity_festival	vocalic_r,retroflex,final_a
+w043	राम	ram	Rama	deity_festival	final_a,long_aa
+w044	दिवाली	diwali	Diwali	deity_festival	v_w,long_aa,ee_i
+w045	होली	holi	Holi	deity_festival	ee_i
+w046	दशहरा	dussehra	Dussehra	deity_festival	sh_s,aspirate,final_a
+w047	नवरात्रि	navratri	Navaratri	deity_festival	v_w,cluster,ee_i
+w048	ईद	eid	Eid al-Fitr	deity_festival	ee_i
+w049	गुरुनानक	gurunanak	Guru Nanak	deity_festival	long_aa
+w050	वाहेगुरु	waheguru	Waheguru	deity_festival	v_w,aspirate
+w051	जयश्रीराम	jaishreeram	Jai Shri Ram	deity_festival	glide,cluster,ee_i
+w052	महादेव	mahadev	Mahadeva	deity_festival	aspirate,v_w,long_aa
+w053	मुंबई	mumbai	Mumbai	place	nasal,diphthong
+w054	दिल्ली	delhi	Delhi	place	doubled,ee_i
+w055	कोलकाता	kolkata	Kolkata	place	long_aa
+w056	चेन्नई	chennai	Chennai	place	doubled,diphthong
+w057	बेंगलुरु	bengaluru	Bangalore	place	nasal
+w058	लखनऊ	lucknow	Lucknow	place	aspirate,oo_u
+w059	जयपुर	jaipur	Jaipur	place	glide,diphthong
+w060	वाराणसी	varanasi	Varanasi	place	v_w,long_aa,retroflex,ee_i
+w061	भोपाल	bhopal	Bhopal	place	aspirate,long_aa
+w062	पुणे	pune	Pune	place	retroflex
+w063	अहमदाबाद	ahmedabad	Ahmedabad	place	aspirate,long_aa
+w064	श्रीनगर	srinagar	Srinagar	place	cluster,ee_i
+w065	प्यार	pyaar		everyday	glide,long_aa
+w066	दोस्त	dost		everyday	cluster
+w067	खुशी	khushi		everyday	aspirate,sh_s,ee_i
+w068	सपना	sapna		everyday	final_a
+w069	चाय	chai		everyday	long_aa,glide
+w070	बारिश	baarish		everyday	long_aa,sh_s
+w071	सुबह	subah		everyday	aspirate
+w072	शक्ति	shakti		everyday	sh_s,cluster,ee_i
+w073	ज्ञान	gyaan		everyday	cluster,long_aa
+w074	विश्वास	vishwas		everyday	v_w,sh_s,cluster,long_aa
+w075	पानी	paani		everyday	long_aa,ee_i
+w076	फूल	phool		everyday	ph_f,oo_u
+w077	ज़िंदगी	zindagi		everyday	z_j,nasal,ee_i
+w078	मेहनत	mehnat		everyday	aspirate
+w079	सच्चा	saccha		everyday	doubled,final_a
+w080	भाई	bhai		everyday	aspirate,diphthong
+w081	दिल	dil		everyday	plain
+w082	आज़ादी	azaadi		everyday	z_j,long_aa,ee_i
+w083	बच्चा	baccha		everyday	doubled,final_a
+w084	मिठाई	mithai		everyday	retroflex,aspirate,diphthong
+w085	शोले	sholay	Sholay	film_music	sh_s
+w086	दीवाना	deewana	Deewana (1992 film)	film_music	ee_i,v_w,long_aa,final_a
+w087	बाहुबली	bahubali	Baahubali: The Beginning	film_music	long_aa,ee_i
+w088	धूम	dhoom	Dhoom	film_music	aspirate,oo_u
+w089	गीत	geet		film_music	ee_i
+w090	संगीत	sangeet		film_music	nasal,ee_i
+w091	रंग	rang		film_music	nasal
+w092	नाच	naach		film_music	long_aa
+w093	सचिन	sachin	Sachin Tendulkar	sports	plain
+w094	धोनी	dhoni	MS Dhoni	sports	aspirate,ee_i
+w095	विराट	virat	Virat Kohli	sports	v_w,retroflex,long_aa
+w096	कोहली	kohli	Virat Kohli	sports	aspirate,ee_i
+w097	रैना	raina	Suresh Raina	sports	diphthong,final_a
+w098	युवराज	yuvraj	Yuvraj Singh	sports	glide,v_w,long_aa
+w099	क्रिकेट	cricket		sports	cluster,retroflex
+w100	हॉकी	hockey		sports	ee_i

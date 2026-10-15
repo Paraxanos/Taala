@@ -1,0 +1,12 @@
+{
+  "seed_start": 20261007,
+  "seed_used": 20261009,
+  "seed_rule": "first seed at or above seed_start whose split puts every phenomenon in both halves",
+  "n_words": 100,
+  "frozen_on": "2026-10-07",
+  "sha256": {
+    "words.tsv": "83a21ffe5fe7ee12c085163f392564ef07b59e724b0fd7da1ee2745d48cc4bed",
+    "split.tsv": "6c44376477c181d39399a7d3a9ae05a13078abc92e5ec4fbfc9a68e70ac96cfb"
+  },
+  "note": "Rules are developed on the train half only. The test half is opened once, in P4."
+}
