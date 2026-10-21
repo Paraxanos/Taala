@@ -1,0 +1,265 @@
+{
+  "meta": {
+    "code_sha256_16": {
+      "taala/estimate.py": "03716480be47ded1",
+      "taala/canon.py": "741084aa2387daf6",
+      "taala/pack.py": "e4753ee7ebe4fd3c",
+      "taala/feedback.py": "fbe4c24f2ad6fa82",
+      "locales/hi-latn/rules.tsv": "951bf302eecdbef7",
+      "locales/hi-latn/rules_learned.tsv": "71078b44d6df9e55",
+      "locales/hi-latn/script.tsv": "0f82d97f184f4246",
+      "eval/accuracy.py": "51efac9f2b0bcdff"
+    },
+    "zxcvbn_version": "unknown",
+    "split": "test",
+    "quick": false,
+    "seed": 20261019,
+    "n_split": 7172481,
+    "weak_below_log10": 6.0,
+    "set_sizes": {
+      "all_overrating": 10000,
+      "all_strictness": 10000,
+      "all_rank": 10000,
+      "indian_overrating": 10000,
+      "indian_strictness": 5000,
+      "indian_rank": 10000
+    },
+    "indian_context_total": 19820,
+    "distinct_pack_tokens_matched": 1351,
+    "finished": "2026-10-21T06:22:03+00:00",
+    "seconds": 1208,
+    "proxy_note": "rockyou.txt has no counts: file position is the frequency rank; 'rare' is the second half of the file."
+  },
+  "results": {
+    "stock_zxcvbn": {
+      "all_overrating": {
+        "k": 835,
+        "n": 10000,
+        "rate": 0.0835,
+        "ci95": [
+          0.07823654815555409,
+          0.08908333423842543
+        ]
+      },
+      "all_strictness": {
+        "k": 2609,
+        "n": 10000,
+        "rate": 0.2609,
+        "ci95": [
+          0.2523861208111354,
+          0.26959751395573256
+        ]
+      },
+      "all_rank": {
+        "n": 10000,
+        "spearman": 0.2727554418368415
+      },
+      "indian_overrating": {
+        "k": 5932,
+        "n": 10000,
+        "rate": 0.5932,
+        "ci95": [
+          0.5835377477679824,
+          0.6027906723061618
+        ]
+      },
+      "indian_strictness": {
+        "k": 1250,
+        "n": 5000,
+        "rate": 0.25,
+        "ci95": [
+          0.2381925059275052,
+          0.2621913591412852
+        ]
+      },
+      "indian_rank": {
+        "n": 10000,
+        "spearman": 0.3935075782697773
+      }
+    },
+    "taala": {
+      "all_overrating": {
+        "k": 682,
+        "n": 10000,
+        "rate": 0.0682,
+        "ci95": [
+          0.06342304288000905,
+          0.07330859029579012
+        ]
+      },
+      "all_strictness": {
+        "k": 3394,
+        "n": 10000,
+        "rate": 0.3394,
+        "ci95": [
+          0.33018253802318037,
+          0.34874080678467806
+        ]
+      },
+      "all_rank": {
+        "n": 10000,
+        "spearman": 0.2538799946521024
+      },
+      "indian_overrating": {
+        "k": 2430,
+        "n": 10000,
+        "rate": 0.243,
+        "ci95": [
+          0.23469338221473043,
+          0.25150400019884156
+        ]
+      },
+      "indian_strictness": {
+        "k": 3317,
+        "n": 5000,
+        "rate": 0.6634,
+        "ci95": [
+          0.6501806529990388,
+          0.6763684527919998
+        ]
+      },
+      "indian_rank": {
+        "n": 10000,
+        "spearman": 0.4239640631194172
+      }
+    },
+    "ablation_no_canon": {
+      "all_overrating": {
+        "k": 732,
+        "n": 10000,
+        "rate": 0.0732,
+        "ci95": [
+          0.06825714174143138,
+          0.07847065130959013
+        ]
+      },
+      "all_strictness": {
+        "k": 2708,
+        "n": 10000,
+        "rate": 0.2708,
+        "ci95": [
+          0.2621795326147345,
+          0.27959649870507364
+        ]
+      },
+      "all_rank": {
+        "n": 10000,
+        "spearman": 0.27622829074261657
+      },
+      "indian_overrating": {
+        "k": 3981,
+        "n": 10000,
+        "rate": 0.3981,
+        "ci95": [
+          0.3885465704800937,
+          0.40773169126287506
+        ]
+      },
+      "indian_strictness": {
+        "k": 2397,
+        "n": 5000,
+        "rate": 0.4794,
+        "ci95": [
+          0.46557359755161143,
+          0.493258032930057
+        ]
+      },
+      "indian_rank": {
+        "n": 10000,
+        "spearman": 0.41233973529213036
+      }
+    },
+    "ablation_no_pack": {
+      "all_overrating": {
+        "k": 788,
+        "n": 10000,
+        "rate": 0.0788,
+        "ci95": [
+          0.07367952657945157,
+          0.08424396553181895
+        ]
+      },
+      "all_strictness": {
+        "k": 3242,
+        "n": 10000,
+        "rate": 0.3242,
+        "ci95": [
+          0.3150947494181805,
+          0.33344026936900206
+        ]
+      },
+      "all_rank": {
+        "n": 10000,
+        "spearman": 0.25244980648293047
+      },
+      "indian_overrating": {
+        "k": 4430,
+        "n": 10000,
+        "rate": 0.443,
+        "ci95": [
+          0.4332876223281378,
+          0.45275615509432754
+        ]
+      },
+      "indian_strictness": {
+        "k": 2012,
+        "n": 5000,
+        "rate": 0.4024,
+        "ci95": [
+          0.38888725457723555,
+          0.41606260634562026
+        ]
+      },
+      "indian_rank": {
+        "n": 10000,
+        "spearman": 0.3713592758355918
+      }
+    },
+    "ablation_learned_rules": {
+      "all_overrating": {
+        "k": 659,
+        "n": 10000,
+        "rate": 0.0659,
+        "ci95": [
+          0.06120187526836449,
+          0.07093152436483241
+        ]
+      },
+      "all_strictness": {
+        "k": 3447,
+        "n": 10000,
+        "rate": 0.3447,
+        "ci95": [
+          0.33544593601901823,
+          0.354073338256576
+        ]
+      },
+      "all_rank": {
+        "n": 10000,
+        "spearman": 0.2557748462471334
+      },
+      "indian_overrating": {
+        "k": 2739,
+        "n": 10000,
+        "rate": 0.2739,
+        "ci95": [
+          0.26524729001950015,
+          0.2827263604229458
+        ]
+      },
+      "indian_strictness": {
+        "k": 3175,
+        "n": 5000,
+        "rate": 0.635,
+        "ci95": [
+          0.6215565140550313,
+          0.6482361988078219
+        ]
+      },
+      "indian_rank": {
+        "n": 10000,
+        "spearman": 0.41931191063360035
+      }
+    }
+  }
+}

@@ -108,5 +108,4 @@ def analyze(password: str) -> dict:
         "forms": forms,
         "blocklist_hit": bool(blocklist_hits),
         "structure_reason": "+".join(reason_parts) if reason_parts else "normal",
-        "band": "Weak" if len(password) <= 4 else ("Fair" if len(password) <= 7 else "Strong"),
     }

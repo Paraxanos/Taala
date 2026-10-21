@@ -1,0 +1,18 @@
+Taala
+Copyright (c) 2026 Paraxanos. Code is released under the MIT License (see LICENSE).
+
+This project includes or builds on the following material.
+
+English Wikipedia (https://en.wikipedia.org)
+  data/variants/wild.tsv holds alternate romanizations taken from Wikipedia redirect
+  titles (retrieved 7 Oct 2026). The word lists under locales/hi-latn/words/ are built
+  locally from Wikipedia category membership by tools/fetch_wordlists.py and are not
+  committed. Both are licensed CC BY-SA 4.0
+  (https://creativecommons.org/licenses/by-sa/4.0/). See data/LICENSE-DATA.md.
+
+zxcvbn, Python port (https://github.com/dwolfhub/zxcvbn-python), MIT License
+  Used as a dependency. Taala is not affiliated with or endorsed by Dropbox or the port's
+  maintainers.
+
+Taala does not include or distribute any password corpus. Evaluation results in results/
+are aggregates only.

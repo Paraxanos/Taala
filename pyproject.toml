@@ -1,0 +1,40 @@
+[build-system]
+requires = ["setuptools>=68"]
+build-backend = "setuptools.build_meta"
+
+[project]
+name = "taala"
+version = "0.1.0b1"
+description = "Password strength checker for Hinglish (romanized Hindi) passwords, independent of spelling and script"
+readme = "README.md"
+requires-python = ">=3.11"
+license = "MIT"
+authors = [{ name = "Paraxanos" }]
+license-files = ["LICENSE", "NOTICE", "THIRD_PARTY_LICENSES.md"]
+dependencies = ["zxcvbn>=4.5,<5"]
+classifiers = [
+    "Development Status :: 4 - Beta",
+    "Intended Audience :: Developers",
+    "Topic :: Security",
+    "Programming Language :: Python :: 3",
+]
+
+[project.optional-dependencies]
+dev = ["pytest>=8", "openpyxl>=3.1"]
+
+[project.scripts]
+taala = "taala.cli:main"
+
+[project.urls]
+Repository = "https://github.com/Paraxanos/Taala"
+
+# Not ready for PyPI: the locale pack (rules, script map, word lists) lives outside the
+# package, so a wheel would install without it. Install from a source clone for now.
+[tool.setuptools]
+packages = ["taala"]
+
+[tool.setuptools.package-data]
+taala = ["policy.toml"]
+
+[tool.pytest.ini_options]
+testpaths = ["tests"]

@@ -13,6 +13,17 @@ results/private/
 # pack.toml (committed) records which categories produced each file. See data/LICENSE-DATA.md.
 locales/*/words/*.txt
 
+# Survey instrument documents: the survey has not been run, so these stay local.
+# survey/words.tsv, split.tsv and FREEZE.json are NOT ignored: the rule learner, the
+# word-list builder and the tests read them.
+survey/README.md
+survey/consent.md
+survey/instructions.md
+survey/cleaning_rules.md
+
+# Run logs (results/*.json and *.md hold the aggregates and are committed)
+*.log
+
 # Python
 __pycache__/
 *.py[cod]

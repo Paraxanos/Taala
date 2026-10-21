@@ -11,6 +11,19 @@ def main():
         sys.exit(0)
         
     password = sys.argv[1]
+
+    # Windows consoles default to cp1252 and crash on Devanagari; never fail on output.
+    for stream in (sys.stdout, sys.stderr):
+        if hasattr(stream, "reconfigure"):
+            stream.reconfigure(encoding="utf-8", errors="replace")
+
+    from . import pack
+    if not pack.has_word_lists():
+        print("Note: Hinglish word lists not found, so only spelling rules and stock zxcvbn "
+              "apply. Run: python tools/fetch_wordlists.py", file=sys.stderr)
+    if not pack.has_rank_file():
+        print("Note: pack ranking file not found, so scores are less strict than the published "
+              "results (see README, 'Reproducing the results').", file=sys.stderr)
     
     from .canon import analyze
     from .estimate import estimate

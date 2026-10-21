@@ -4,6 +4,8 @@ from http.server import HTTPServer, BaseHTTPRequestHandler
 import urllib.parse
 
 PORT = 8080
+MAX_BODY = 4096
+MAX_PWD = 72  # zxcvbn rejects longer input
 
 HTML = """<!doctype html>
 <html lang="en">
@@ -61,6 +63,8 @@ HTML = """<!doctype html>
             <button onclick="checkPassword()">Analyze</button>
         </div>
         
+        <p id="error-msg" role="alert" style="display:none;color:var(--weak);margin:0 0 1rem"></p>
+
         <div id="results-card" class="card">
             <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 1rem;">
                 <span style="font-weight: 600;">Strength Band</span>
@@ -91,12 +95,24 @@ HTML = """<!doctype html>
     </div>
 
     <script>
+        function showError(msg) {
+            const el = document.getElementById('error-msg');
+            el.textContent = `Could not analyze the password (${msg}).`;
+            el.style.display = 'block';
+        }
+
         async function checkPassword() {
+            document.getElementById('error-msg').style.display = 'none';
             const pwd = document.getElementById('password').value;
             if (!pwd) return;
             
             try {
-                const response = await fetch(`/check?pwd=${encodeURIComponent(pwd)}`);
+                const response = await fetch('/check', {
+                    method: 'POST',
+                    headers: {'Content-Type': 'application/json'},
+                    body: JSON.stringify({pwd: pwd}),
+                });
+                if (!response.ok) throw new Error(`HTTP ${response.status}`);
                 const data = await response.json();
                 
                 // Results Card
@@ -130,7 +146,7 @@ HTML = """<!doctype html>
                 document.getElementById('words-to-add').textContent = data.words_to_add;
                 
             } catch (e) { 
-                alert(`Error: ${e.message}`); 
+                showError(e.message);
             }
         }
         
@@ -149,30 +165,49 @@ class TaalaHandler(BaseHTTPRequestHandler):
             self.send_header("Content-type", "text/html; charset=utf-8")
             self.end_headers()
             self.wfile.write(HTML.encode("utf-8"))
-        elif parsed.path == "/check":
-            params = urllib.parse.parse_qs(parsed.query)
-            pwd = params.get("pwd", [""])[0]
-            from taala.canon import analyze
-            from taala.estimate import estimate
-            analysis = analyze(pwd)
-            est = estimate(pwd)
-            response_data = {
-                "band": est["band"], "forms": list(analysis["forms"]),
-                "blocklist_hit": analysis["blocklist_hit"], "guesses_log10": est["guesses_log10"],
-                "words_to_add": est["words_to_add"], "reasons": est["reasons"], "recipe": est["recipe"]
-            }
-            self.send_response(200)
-            self.send_header("Content-type", "application/json; charset=utf-8")
-            self.end_headers()
-            self.wfile.write(json.dumps(response_data).encode("utf-8"))
         else:
             self.send_response(404)
             self.end_headers()
+    def do_POST(self):
+        # The password travels in the body, never in the URL (URLs reach logs and history).
+        if urllib.parse.urlparse(self.path).path != "/check":
+            self.send_response(404)
+            self.end_headers()
+            return
+        try:
+            length = int(self.headers.get("Content-Length", 0))
+            if not 0 < length <= MAX_BODY:
+                raise ValueError("bad length")
+            pwd = json.loads(self.rfile.read(length).decode("utf-8")).get("pwd", "")
+            if not isinstance(pwd, str) or not pwd or len(pwd) > MAX_PWD:
+                raise ValueError("bad password")
+        except (ValueError, UnicodeDecodeError):
+            self.send_response(400)
+            self.end_headers()
+            return
+        from taala.canon import analyze
+        from taala.estimate import estimate
+        analysis = analyze(pwd)
+        est = estimate(pwd)
+        response_data = {
+            "band": est["band"], "forms": list(analysis["forms"]),
+            "blocklist_hit": analysis["blocklist_hit"], "guesses_log10": est["guesses_log10"],
+            "words_to_add": est["words_to_add"], "reasons": est["reasons"], "recipe": est["recipe"]
+        }
+        self.send_response(200)
+        self.send_header("Content-type", "application/json; charset=utf-8")
+        self.send_header("Cache-Control", "no-store")
+        self.end_headers()
+        self.wfile.write(json.dumps(response_data).encode("utf-8"))
+
     def log_message(self, format, *args): pass
 
 def main():
-    server = HTTPServer(("0.0.0.0", PORT), TaalaHandler)
-    print(f"Taala running at http://localhost:{PORT}/")
+    server = HTTPServer(("127.0.0.1", PORT), TaalaHandler)
+    from taala import pack
+    if not pack.has_word_lists():
+        print("Note: Hinglish word lists not found. Run: python tools/fetch_wordlists.py")
+    print(f"Taala running at http://127.0.0.1:{PORT}/")
     try: server.serve_forever()
     except KeyboardInterrupt: pass
     finally: server.server_close()
