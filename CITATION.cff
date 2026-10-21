@@ -1,0 +1,17 @@
+cff-version: 1.2.0
+message: "If you use Taala in research, please cite it as below."
+title: "Taala: a password strength checker for Hinglish passwords"
+type: software
+version: 0.1.0b1
+license: MIT
+repository-code: "https://github.com/Paraxanos/Taala"
+authors:
+  - alias: "Paraxanos"
+abstract: >-
+  Estimates the strength of Hinglish (romanized Hindi) passwords independent of
+  spelling and script, on top of zxcvbn. Early beta; not security-reviewed.
+keywords:
+  - passwords
+  - zxcvbn
+  - Hinglish
+  - password strength

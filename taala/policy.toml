@@ -1,0 +1,67 @@
+# Taala NIST SP 800-63B-4 Policy Configuration
+# Architecture §3 [7]: Policy verdict
+#
+# This file defines the Accept/Reject thresholds for Taala's policy engine.
+# Edit this file to tune your deployment's security posture.
+# Reload the policy engine after changes (it is loaded once at import time).
+
+[policy]
+name         = "NIST SP 800-63B-4 baseline"
+version      = "1.0.0"
+
+# ---------------------------------------------------------------------------
+# Length rules — the ONLY hard gate in NIST 800-63B-4
+# ---------------------------------------------------------------------------
+[policy.length]
+# Minimum number of Unicode characters (not bytes).
+# NIST SP 800-63B-4 §3.1.1.2: passwords used as a single-factor mechanism
+# SHALL be at least 15 characters; passwords used only inside multi-factor
+# authentication MAY be shorter but SHALL be at least 8.
+# "single_factor" -> 15, "multi_factor" -> 8. Override with min_chars.
+authenticator = "single_factor"
+min_chars_single_factor = 15
+min_chars_multi_factor  = 8
+
+# Maximum allowed length (NIST §3.1.1.2: verifiers SHOULD permit at least 64; we cap at 128
+# to protect against DoS via the canonicalization engine, Architecture §5).
+max_chars = 128
+
+# ---------------------------------------------------------------------------
+# Blocklist gate — reject if on the well-known compromised-password list
+# ---------------------------------------------------------------------------
+[policy.blocklist]
+# If true, passwords that match any canonical form of a blocklisted word are
+# rejected. NIST §3.1.1.2: verifiers SHALL compare the prospective password
+# against a blocklist of commonly used, expected or compromised values.
+# Note: NIST says the entire password is compared, not substrings.
+enabled = true
+
+# ---------------------------------------------------------------------------
+# Personal info gate — reject if password is derived from user's profile
+# ---------------------------------------------------------------------------
+[policy.personal_info]
+# If true AND context tokens are provided to the verdict() call, passwords
+# that match a context token are rejected.
+enabled = true
+
+# ---------------------------------------------------------------------------
+# Composition rules — intentionally NOT enforced (NIST §3.1.1.2 compliant)
+# ---------------------------------------------------------------------------
+# NIST §3.1.1.2: verifiers SHALL NOT impose composition rules
+# (e.g., requiring uppercase, digits, or symbols). Taala follows this.
+#
+# These fields exist only for documentation and audit-trail purposes.
+# Setting them to true would VIOLATE NIST 800-63B-4.
+[policy.composition]
+require_uppercase = false   # MUST remain false (NIST §3.1.1.2)
+require_digit     = false   # MUST remain false (NIST §3.1.1.2)
+require_symbol    = false   # MUST remain false (NIST §3.1.1.2)
+
+# ---------------------------------------------------------------------------
+# Strength gate — minimum band required for acceptance
+# ---------------------------------------------------------------------------
+[policy.strength]
+# Minimum guesses_log10 for the verdict to be "accept".
+# Default maps to the "Fair" band floor (10^6 guesses).
+# Set to 10.0 to require "Strong".
+min_guesses_log10 = 6.0

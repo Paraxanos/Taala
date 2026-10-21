@@ -69,3 +69,24 @@ def test_zxcvbn_integration():
     # A very strong, long random string
     strong_res = estimate("correct-horse-battery-staple-xy7z!")
     assert strong_res["band"] in ("Fair", "Strong")
+
+def test_stripped_affix_is_charged_not_free():
+    """Regression: 'mxpqzr83921' was rated as just 'mxpqzr' (6.6 vs stock 10.4) because the
+    padding-stripped canonical form dropped the digits for free."""
+    import zxcvbn
+    from taala.estimate import estimate
+    for pw in ("mxpqzr83921", "zebracorn4927"):
+        stock = zxcvbn.zxcvbn(pw)["guesses_log10"]
+        assert estimate(pw)["guesses_log10"] >= stock - 0.5, pw
+
+
+def test_scores_do_not_depend_on_hash_seed():
+    """Regression: pack words reached zxcvbn in set order, so scores changed per process."""
+    import subprocess, sys
+    code = "from taala.estimate import estimate; print(estimate('navratri2024')['guesses_log10'])"
+    outs = {
+        subprocess.run([sys.executable, "-c", code], capture_output=True, text=True,
+                       env={**__import__('os').environ, "PYTHONHASHSEED": str(s)}).stdout.strip()
+        for s in (1, 2, 3)
+    }
+    assert len(outs) == 1, outs

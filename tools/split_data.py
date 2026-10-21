@@ -55,6 +55,12 @@ def sha256_file(path):
 
 
 def main(input_path, has_counts, seed):
+    # random.Random.binomialvariate arrived in Python 3.12. The committed split (see
+    # data/splits/MANIFEST.json) was drawn with its random stream, and a substitute would
+    # silently give a different split, so older versions are refused rather than approximated.
+    if not hasattr(random.Random, "binomialvariate"):
+        raise SystemExit("tools/split_data.py needs Python 3.12 or newer (random.binomialvariate), "
+                         "so that the split reproduces the one recorded in data/splits/MANIFEST.json.")
     input_path = Path(input_path)
     OUT_DIR.mkdir(parents=True, exist_ok=True)
     rng = random.Random(seed)

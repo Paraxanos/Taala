@@ -1,5 +1,11 @@
 # Pilot variant set (D0.3)
 
+> **Status (October 2026): small and partly synthetic.** The learned spelling rules come
+> from this pilot set, which has 166 Wikipedia redirects, 127 model-written spellings
+> (development only), and **no human-observed spellings yet**: the four author sheets in
+> `sheets/` are blank templates and `observed_authors.tsv` is empty. Treat the learned
+> rules as a proof of concept; they did not beat the hand-written rules (see the main README).
+
 Spelling variants are the ground truth for everything the rule learner does. This folder
 holds the **pilot** set used until the class survey runs after the presentation.
 
@@ -12,7 +18,7 @@ holds the **pilot** set used until the class survey runs after the presentation.
 | `sheets/author_*.tsv` → `observed_authors.tsv` | How each of the four of us naturally writes each word, written independently | **0 — not collected** | Would be weak but honest: four people, one college, and we also write the rules |
 
 Never merge these into one undifferentiated file. Every result that uses them reports the
-mix (`cleaning_rules.md`, "what gets reported").
+mix (see the cleaning rules kept with the survey instrument, not in this repository).
 
 ### Why `observed_authors.tsv` is empty
 

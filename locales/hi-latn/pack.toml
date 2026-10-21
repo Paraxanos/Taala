@@ -36,7 +36,7 @@ source = "English Wikipedia category membership"
 categories = ["Hindu gods", "Hindu goddesses"]
 categories_traversed = 2
 fetched = "2026-10-14"
-license = "CC BY-SA 4.0 (Wikipedia). Internal use only, not redistributed."
+license = "CC BY-SA 4.0 (English Wikipedia). Built locally by tools/fetch_wordlists.py, not committed."
 
 [[lists]]
 file = "words/festivals.txt"
@@ -47,7 +47,7 @@ source = "English Wikipedia category membership"
 categories = ["Hindu festivals"]
 categories_traversed = 1
 fetched = "2026-10-14"
-license = "CC BY-SA 4.0 (Wikipedia). Internal use only, not redistributed."
+license = "CC BY-SA 4.0 (English Wikipedia). Built locally by tools/fetch_wordlists.py, not committed."
 
 [[lists]]
 file = "words/films_music.txt"
@@ -58,7 +58,7 @@ source = "English Wikipedia category membership"
 categories = ["2020s Hindi-language films", "2010s Hindi-language films", "2000s Hindi-language films", "1990s Hindi-language films"]
 categories_traversed = 48
 fetched = "2026-10-14"
-license = "CC BY-SA 4.0 (Wikipedia). Internal use only, not redistributed."
+license = "CC BY-SA 4.0 (English Wikipedia). Built locally by tools/fetch_wordlists.py, not committed."
 
 [[lists]]
 file = "words/given_names.txt"
@@ -69,7 +69,7 @@ source = "English Wikipedia category membership"
 categories = ["Indian masculine given names", "Indian feminine given names", "Indian given names"]
 categories_traversed = 3
 fetched = "2026-10-14"
-license = "CC BY-SA 4.0 (Wikipedia). Internal use only, not redistributed."
+license = "CC BY-SA 4.0 (English Wikipedia). Built locally by tools/fetch_wordlists.py, not committed."
 
 [[lists]]
 file = "words/places.txt"
@@ -80,7 +80,7 @@ source = "English Wikipedia category membership"
 categories = ["Cities and towns in India by state or union territory", "Cities in India by state or union territory"]
 categories_traversed = 54
 fetched = "2026-10-14"
-license = "CC BY-SA 4.0 (Wikipedia). Internal use only, not redistributed."
+license = "CC BY-SA 4.0 (English Wikipedia). Built locally by tools/fetch_wordlists.py, not committed."
 
 [[lists]]
 file = "words/sports.txt"
@@ -91,7 +91,7 @@ source = "English Wikipedia category membership"
 categories = ["Indian cricketers"]
 categories_traversed = 1
 fetched = "2026-10-14"
-license = "CC BY-SA 4.0 (Wikipedia). Internal use only, not redistributed."
+license = "CC BY-SA 4.0 (English Wikipedia). Built locally by tools/fetch_wordlists.py, not committed."
 
 [[lists]]
 file = "words/surnames.txt"
@@ -102,4 +102,4 @@ source = "English Wikipedia category membership"
 categories = ["Surnames of Indian origin"]
 categories_traversed = 1
 fetched = "2026-10-14"
-license = "CC BY-SA 4.0 (Wikipedia). Internal use only, not redistributed."
+license = "CC BY-SA 4.0 (English Wikipedia). Built locally by tools/fetch_wordlists.py, not committed."

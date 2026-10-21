@@ -1,7 +1,9 @@
 """Tests for Pack Integration (Tasks 2.2 & 2.3)."""
+import conftest
 from taala.pack import get_rules, get_script, get_words
 from taala.canon import generate_canonical_forms
 
+@conftest.needs_wordlists
 def test_pack_loads_successfully():
     assert len(get_rules()) > 0, "rules.tsv is empty or missing. Run tools/learn_rules.py!"
     assert len(get_script()) > 0, "script.tsv is empty or missing. Run tools/build_script.py!"

@@ -244,7 +244,7 @@ def write_pack_toml(manifest):
         source = ("our own survey word list (survey/words.tsv, everyday words)"
                   if info["kind"] == "seed" else "English Wikipedia category membership")
         licence = ("ours" if info["kind"] == "seed"
-                   else "CC BY-SA 4.0 (Wikipedia). Internal use only, not redistributed.")
+                   else "CC BY-SA 4.0 (English Wikipedia). Built locally by tools/fetch_wordlists.py, not committed.")
         lines += [
             "[[lists]]",
             f'file = "words/{name}.txt"',

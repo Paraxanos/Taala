@@ -68,3 +68,9 @@ def test_every_phenomenon_appears_in_both_halves():
 
     missing = halves["train"] ^ halves["test"]
     assert not missing, f"phenomena present in only one half: {sorted(missing)}"
+
+
+def test_gitattributes_pins_line_endings():
+    """Regression: a CRLF checkout on Windows CI changed the bytes and broke the freeze hashes."""
+    attrs = (ROOT / ".gitattributes").read_text(encoding="utf-8")
+    assert "eol=lf" in attrs and "*.tsv" in attrs
