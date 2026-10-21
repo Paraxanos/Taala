@@ -7,7 +7,11 @@ never in the repository.
 import csv
 import importlib.util
 import json
+import random
+import sys
 from pathlib import Path
+
+import pytest
 
 ROOT = Path(__file__).resolve().parents[1]
 
@@ -29,6 +33,12 @@ def load_module():
     return module
 
 
+needs_py312 = pytest.mark.skipif(
+    sys.version_info < (3, 12),
+    reason="the split uses random.binomialvariate (Python 3.12+); see tools/split_data.py",
+)
+
+
 def run(tmp_path, lines=SYNTHETIC, seed=1234, has_counts=True):
     module = load_module()
     tmp_path.mkdir(parents=True, exist_ok=True)  # callers may pass a nested path
@@ -45,6 +55,7 @@ def read_counts(path):
         return {r["password"]: int(r["count"]) for r in csv.DictReader(fh, delimiter="\t")}
 
 
+@needs_py312
 def test_no_occurrence_is_lost_or_duplicated(tmp_path):
     module, manifest = run(tmp_path)
     counts = manifest["counts"]
@@ -56,6 +67,7 @@ def test_no_occurrence_is_lost_or_duplicated(tmp_path):
         assert train.get(password, 0) + test.get(password, 0) == total, password
 
 
+@needs_py312
 def test_bad_lines_are_skipped_and_counted(tmp_path):
     _, manifest = run(tmp_path)
     assert manifest["counts"]["unique"] == 4
@@ -63,6 +75,7 @@ def test_bad_lines_are_skipped_and_counted(tmp_path):
     assert manifest["counts"]["occurrences"] == 161
 
 
+@needs_py312
 def test_passwords_with_spaces_survive(tmp_path):
     module, _ = run(tmp_path)
     train = read_counts(module.OUT_DIR / "train_counts.tsv")
@@ -70,6 +83,7 @@ def test_passwords_with_spaces_survive(tmp_path):
     assert "correct horse" in (train | test)
 
 
+@needs_py312
 def test_same_seed_reproduces_the_split(tmp_path):
     first, _ = run(tmp_path / "a", seed=777)
     second, _ = run(tmp_path / "b", seed=777)
@@ -78,6 +92,7 @@ def test_same_seed_reproduces_the_split(tmp_path):
                (second.OUT_DIR / name).read_text(encoding="utf-8")
 
 
+@needs_py312
 def test_different_seed_changes_the_split(tmp_path):
     """With 100 occurrences of one password, two seeds agreeing exactly would be a bug."""
     first, _ = run(tmp_path / "a", seed=1)
@@ -86,6 +101,7 @@ def test_different_seed_changes_the_split(tmp_path):
            (second.OUT_DIR / "train_counts.tsv").read_text(encoding="utf-8")
 
 
+@needs_py312
 def test_split_is_roughly_even(tmp_path):
     """A 50/50 coin flip over 161 occurrences should not land wildly off centre."""
     _, manifest = run(tmp_path)
@@ -94,12 +110,14 @@ def test_split_is_roughly_even(tmp_path):
     assert 0.30 < share < 0.70, share
 
 
+@needs_py312
 def test_no_counts_mode_treats_each_line_as_one(tmp_path):
     _, manifest = run(tmp_path, lines=["alpha", "beta", "gamma"], has_counts=False)
     assert manifest["counts"]["unique"] == 3
     assert manifest["counts"]["occurrences"] == 3
 
 
+@needs_py312
 def test_manifest_records_provenance(tmp_path):
     _, manifest = run(tmp_path)
     assert manifest["seed"] == 1234
@@ -107,3 +125,11 @@ def test_manifest_records_provenance(tmp_path):
     assert manifest["input"]["has_counts"] is True
     assert set(manifest["outputs"]) == {"train_counts.tsv", "test_counts.tsv"}
     assert manifest["filters"]["max_password_length"] == 64
+
+
+def test_old_python_is_refused_with_a_clear_message(tmp_path, monkeypatch):
+    """Without binomialvariate the tool must stop, not fall back to a different split."""
+    monkeypatch.delattr(random.Random, "binomialvariate", raising=False)
+    with pytest.raises(SystemExit) as exc:
+        run(tmp_path)
+    assert "3.12" in str(exc.value)
