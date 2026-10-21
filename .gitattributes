@@ -1,0 +1,11 @@
+# Check text files out with LF on every platform. The frozen survey word list and split are
+# verified by SHA-256 (tests/test_freeze.py), and a CRLF checkout (the Windows default on
+# CI) changes the bytes and therefore the hash. Shell scripts also break with CRLF.
+* text=auto eol=lf
+*.tsv text eol=lf
+*.json text eol=lf
+*.sh text eol=lf
+.githooks/* text eol=lf
+
+# Binary files: never convert.
+*.xlsx binary
